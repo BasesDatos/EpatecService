@@ -200,13 +200,13 @@ namespace EpatecService.Controllers
                         prod._exento = reader.GetBoolean(3);
                         prod._cantidadDisponible = reader.GetInt32(4);
                         prod._precio = reader.GetDecimal(5);
-                        prod._nombre = reader.GetString(6);
+                        prod._nombreSucursal = reader.GetString(6);
                         productos.Add(prod);
                     }
 
                     return Json(productos);
                 }
-                catch (SqlException ex) { return Json(new Resultado("Error de conexión con la base de datos")); }
+                catch (SqlException ex) { return Json(new Resultado("Prueba")); }//Error de conexión con la base de datos
                 finally { connection.Close(); }
             }
         }
