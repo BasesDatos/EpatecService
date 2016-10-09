@@ -7,9 +7,10 @@ namespace EpatecService.Models
 {
     public class Sucursal
     {
-        public Int64 _id { get; set; }
+        public int _id { get; set; }
         public string _nombre { get; set; }
         public int _idEmpresa { get; set; }
         public string _direccion { get; set; }
+        public Boolean _estado { get; set; }
     }
 }

@@ -9,5 +9,7 @@ namespace EpatecService.Models
     {
         public Int64 _id { get; set; }
         public string _descripcion { get; set; }
+        public string _nombre { get; set; }
+        public Boolean _estado { get; set; }
     }
 }

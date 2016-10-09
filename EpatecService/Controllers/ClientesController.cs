@@ -248,6 +248,51 @@ namespace EpatecService.Controllers
         }
 
 
+        [Route("all/")]
+        [HttpGet]
+        public IHttpActionResult all()
+        {
+            List<Cliente> clientes = new List<Cliente>();
+
+            using (SqlConnection connection = DataBase.connect())
+            {
+                SqlCommand command = new SqlCommand("dbo.listarClientes", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Cliente cliente = new Models.Cliente();
+                        cliente._primerApellido = reader.GetString(0);
+                        cliente._segundoApellido = reader.GetString(1);
+                        cliente._nombre = reader.GetString(2);
+                        cliente._cedula = reader.GetString(3);
+                        cliente._usuario = reader.GetString(4);
+                        cliente._contrasena = reader.GetString(5);
+                        cliente._fechaNacimiento = reader.GetDateTime(6);
+                        cliente._telefono = reader.GetString(7);
+                        cliente._pais = reader.GetString(8);
+                        cliente._provincia = reader.GetString(9);
+                        cliente._codigoPostal = reader.GetInt32(10);
+                        cliente._direccion = reader.GetString(11);
+                        cliente._calle = reader.GetString(12);
+                        cliente._numeroCasa = reader.GetInt32(13);
+                        cliente._prioridad = reader.GetString(14);
+                        clientes.Add(cliente);
+                    }
+
+                    return Json(clientes);
+                }
+                catch(SqlException ex) { return Json(new Resultado("Error de conexión con la base de datos")); }
+                finally { connection.Close(); }
+            }
+        }
+
+
 
     }
 }
