@@ -206,7 +206,7 @@ namespace EpatecService.Controllers
 
                     return Json(productos);
                 }
-                catch (SqlException ex) { return Json(new Resultado("Prueba")); }//Error de conexión con la base de datos
+                catch (SqlException ex) { return Json(new Resultado("Error de conexión con la base de datos")); }
                 finally { connection.Close(); }
             }
         }
